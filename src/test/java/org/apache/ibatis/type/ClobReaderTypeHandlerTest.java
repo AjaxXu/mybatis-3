@@ -23,6 +23,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.*;
 import java.sql.Clob;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.BaseDataTest;
@@ -64,7 +65,7 @@ class ClobReaderTypeHandlerTest extends BaseTypeHandlerTest {
     sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
 
     BaseDataTest.runScript(sqlSessionFactory.getConfiguration().getEnvironment().getDataSource(),
-            "org/apache/ibatis/type/ClobReaderTypeHandlerTest.sql");
+        "org/apache/ibatis/type/ClobReaderTypeHandlerTest.sql");
   }
 
   @Override
