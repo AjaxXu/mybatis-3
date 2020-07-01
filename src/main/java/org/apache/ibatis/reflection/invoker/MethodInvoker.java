@@ -21,10 +21,12 @@ import java.lang.reflect.Method;
 import org.apache.ibatis.reflection.Reflector;
 
 /**
+ * 方法调用器
  * @author Clinton Begin
  */
 public class MethodInvoker implements Invoker {
 
+  // 如果只有1个参数，则是参数类型，否则就是返回值类型
   private final Class<?> type;
   private final Method method;
 

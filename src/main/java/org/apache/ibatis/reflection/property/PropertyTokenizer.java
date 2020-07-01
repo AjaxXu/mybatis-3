@@ -18,14 +18,18 @@ package org.apache.ibatis.reflection.property;
 import java.util.Iterator;
 
 /**
+ * 属性分词器
  * @author Clinton Begin
  */
 public class PropertyTokenizer implements Iterator<PropertyTokenizer> {
   private String name;
+  // 带索引的名称
   private final String indexedName;
+  // 索引
   private String index;
   private final String children;
 
+  // aa[1].bbb: indexedName=aa[1], name = aa, index = 1, children = bbb
   public PropertyTokenizer(String fullname) {
     int delim = fullname.indexOf('.');
     if (delim > -1) {

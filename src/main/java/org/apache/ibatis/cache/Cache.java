@@ -25,6 +25,7 @@ import java.util.concurrent.locks.ReadWriteLock;
  * The cache implementation must have a constructor that receives the cache id as an String parameter.
  * <p>
  * MyBatis will pass the namespace as id to the constructor.
+ * 缓存，必须要有一个cache id
  *
  * <pre>
  * public MyCache(final String id) {

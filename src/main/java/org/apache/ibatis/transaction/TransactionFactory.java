@@ -24,6 +24,7 @@ import org.apache.ibatis.session.TransactionIsolationLevel;
 
 /**
  * Creates {@link Transaction} instances.
+ * 创建事务
  *
  * @author Clinton Begin
  */
@@ -49,7 +50,7 @@ public interface TransactionFactory {
   /**
    * Creates a {@link Transaction} out of a datasource.
    * @param dataSource DataSource to take the connection from
-   * @param level Desired isolation level
+   * @param level Desired isolation level 希望的事务隔离级别
    * @param autoCommit Desired autocommit
    * @return Transaction
    * @since 3.1.0

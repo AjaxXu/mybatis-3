@@ -45,6 +45,7 @@ import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
 /**
+ * Executor抽象类
  * @author Clinton Begin
  */
 public abstract class BaseExecutor implements Executor {
@@ -55,11 +56,13 @@ public abstract class BaseExecutor implements Executor {
   protected Executor wrapper;
 
   protected ConcurrentLinkedQueue<DeferredLoad> deferredLoads;
+  // 本地缓存
   protected PerpetualCache localCache;
   protected PerpetualCache localOutputParameterCache;
   protected Configuration configuration;
 
   protected int queryStack;
+  // 是否关闭
   private boolean closed;
 
   protected BaseExecutor(Configuration configuration, Transaction transaction) {
@@ -347,14 +350,21 @@ public abstract class BaseExecutor implements Executor {
     this.wrapper = wrapper;
   }
 
+  // 延迟加载
   private static class DeferredLoad {
 
+    // 结果对象
     private final MetaObject resultObject;
+    // 属性
     private final String property;
+    // 目标类型
     private final Class<?> targetType;
+    // 缓存key
     private final CacheKey key;
     private final PerpetualCache localCache;
+    // 对象工厂
     private final ObjectFactory objectFactory;
+    // 结果抽取器
     private final ResultExtractor resultExtractor;
 
     // issue #781
@@ -373,6 +383,7 @@ public abstract class BaseExecutor implements Executor {
       this.targetType = targetType;
     }
 
+    // 是否能加载
     public boolean canLoad() {
       return localCache.getObject(key) != null && localCache.getObject(key) != EXECUTION_PLACEHOLDER;
     }

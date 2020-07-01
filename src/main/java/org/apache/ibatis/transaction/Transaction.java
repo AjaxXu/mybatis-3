@@ -21,6 +21,7 @@ import java.sql.SQLException;
 /**
  * Wraps a database connection.
  * Handles the connection lifecycle that comprises: its creation, preparation, commit/rollback and close.
+ * 包装数据库连接，处理连接的生命周期
  *
  * @author Clinton Begin
  */
@@ -57,6 +58,7 @@ public interface Transaction {
 
   /**
    * Get transaction timeout if set.
+   * 事务超时时间
    *
    * @return the timeout
    * @throws SQLException

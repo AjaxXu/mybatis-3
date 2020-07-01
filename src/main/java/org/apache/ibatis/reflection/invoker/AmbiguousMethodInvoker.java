@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 
 import org.apache.ibatis.reflection.ReflectionException;
 
+// 歧义的方法调用器
 public class AmbiguousMethodInvoker extends MethodInvoker {
   private final String exceptionMessage;
 

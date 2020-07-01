@@ -19,6 +19,7 @@ import java.sql.Connection;
 
 /**
  * @author Clinton Begin
+ * 事务隔离级别
  */
 public enum TransactionIsolationLevel {
   NONE(Connection.TRANSACTION_NONE),

@@ -23,6 +23,7 @@ import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.session.Configuration;
 
 /**
+ * 结果抽取器
  * @author Andrew Gustafson
  */
 public class ResultExtractor {
@@ -36,9 +37,11 @@ public class ResultExtractor {
 
   public Object extractObjectFromList(List<Object> list, Class<?> targetType) {
     Object value = null;
+    // 如果是list类型，直接返回
     if (targetType != null && targetType.isAssignableFrom(list.getClass())) {
       value = list;
     } else if (targetType != null && objectFactory.isCollection(targetType)) {
+      // 如果是集合对象
       value = objectFactory.create(targetType);
       MetaObject metaObject = configuration.newMetaObject(value);
       metaObject.addAll(list);

@@ -44,6 +44,7 @@ import org.apache.ibatis.reflection.property.PropertyNamer;
 /**
  * This class represents a cached set of class definition information that
  * allows for easy mapping between property names and getter/setter methods.
+ * 反射器代表类定义信息的缓存集合，方便获取属性名称和方法
  *
  * @author Clinton Begin
  */
@@ -58,6 +59,7 @@ public class Reflector {
   private final Map<String, Class<?>> getTypes = new HashMap<>();
   private Constructor<?> defaultConstructor;
 
+  // 大小写集合
   private Map<String, String> caseInsensitivePropertyMap = new HashMap<>();
 
   public Reflector(Class<?> clazz) {
@@ -76,12 +78,14 @@ public class Reflector {
     }
   }
 
+  // 设置默认构造函数
   private void addDefaultConstructor(Class<?> clazz) {
     Constructor<?>[] constructors = clazz.getDeclaredConstructors();
     Arrays.stream(constructors).filter(constructor -> constructor.getParameterTypes().length == 0)
       .findAny().ifPresent(constructor -> this.defaultConstructor = constructor);
   }
 
+  // 设置get函数
   private void addGetMethods(Class<?> clazz) {
     Map<String, List<Method>> conflictingGetters = new HashMap<>();
     Method[] methods = getClassMethods(clazz);
@@ -268,6 +272,7 @@ public class Reflector {
    * declared in this class and any superclass.
    * We use this method, instead of the simpler <code>Class.getMethods()</code>,
    * because we want to look for private methods as well.
+   * 使用该方法替换Class.getMethods()，是为了获取私有函数
    *
    * @param clazz The class
    * @return An array containing all methods in this class
@@ -323,6 +328,7 @@ public class Reflector {
 
   /**
    * Checks whether can control member accessible.
+   * 检查是否能控制成员访问
    *
    * @return If can control member accessible, it return {@literal true}
    * @since 3.5.0
