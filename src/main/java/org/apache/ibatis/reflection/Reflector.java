@@ -50,8 +50,11 @@ import org.apache.ibatis.reflection.property.PropertyNamer;
  */
 public class Reflector {
 
+  // 要被分解的类
   private final Class<?> type;
+  // 可读属性
   private final String[] readablePropertyNames;
+  // 可写属性
   private final String[] writablePropertyNames;
   private final Map<String, Invoker> setMethods = new HashMap<>();
   private final Map<String, Invoker> getMethods = new HashMap<>();
@@ -398,6 +401,7 @@ public class Reflector {
 
   /**
    * Gets the type for a property getter.
+   * 返回get 属性的class类
    *
    * @param propertyName - the name of the property
    * @return The Class of the property getter

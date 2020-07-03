@@ -27,6 +27,7 @@ import org.apache.ibatis.reflection.invoker.MethodInvoker;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
 
 /**
+ * 元对象类
  * @author Clinton Begin
  */
 public class MetaClass {
@@ -68,6 +69,7 @@ public class MetaClass {
     return reflector.getSetablePropertyNames();
   }
 
+  // 获取name的设置属性，比如name为String类型，返回的就是String.class
   public Class<?> getSetterType(String name) {
     PropertyTokenizer prop = new PropertyTokenizer(name);
     if (prop.hasNext()) {
@@ -95,8 +97,10 @@ public class MetaClass {
 
   private Class<?> getGetterType(PropertyTokenizer prop) {
     Class<?> type = reflector.getGetterType(prop.getName());
+    // 如果get的是集合，同时index不为null
     if (prop.getIndex() != null && Collection.class.isAssignableFrom(type)) {
       Type returnType = getGenericGetterType(prop.getName());
+      // 如果返回类型是集合类，比如collection[String]
       if (returnType instanceof ParameterizedType) {
         Type[] actualTypeArguments = ((ParameterizedType) returnType).getActualTypeArguments();
         if (actualTypeArguments != null && actualTypeArguments.length == 1) {
@@ -112,6 +116,7 @@ public class MetaClass {
     return type;
   }
 
+  // 返回通用get 属性类型
   private Type getGenericGetterType(String propertyName) {
     try {
       Invoker invoker = reflector.getGetInvoker(propertyName);

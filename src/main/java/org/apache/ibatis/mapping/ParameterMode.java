@@ -16,6 +16,7 @@
 package org.apache.ibatis.mapping;
 
 /**
+ * 参数模型
  * @author Clinton Begin
  */
 public enum ParameterMode {

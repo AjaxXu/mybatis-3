@@ -27,6 +27,7 @@ import org.apache.ibatis.reflection.invoker.Invoker;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
 
 /**
+ * 对象包装器
  * @author Clinton Begin
  */
 public class BeanWrapper extends BaseWrapper {
@@ -40,22 +41,30 @@ public class BeanWrapper extends BaseWrapper {
     this.metaClass = MetaClass.forClass(object.getClass(), metaObject.getReflectorFactory());
   }
 
+  // {@code object} 对象获取 prop属性
   @Override
   public Object get(PropertyTokenizer prop) {
     if (prop.getIndex() != null) {
+      // 如果index不为null，先获取集合对象
       Object collection = resolveCollection(prop, object);
+      // 从集合对象中获取集合内对象
       return getCollectionValue(prop, collection);
     } else {
+      // 直接获取object的属性
       return getBeanProperty(prop, object);
     }
   }
 
+  // {@code object} 对象设置 prop属性
   @Override
   public void set(PropertyTokenizer prop, Object value) {
     if (prop.getIndex() != null) {
+      // 如果index不为null，先获取集合对象
       Object collection = resolveCollection(prop, object);
+      // 设置集合对象的集合内对象
       setCollectionValue(prop, collection, value);
     } else {
+      // 直接设置object的属性prop的值
       setBeanProperty(prop, object, value);
     }
   }
