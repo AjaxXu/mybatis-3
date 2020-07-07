@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * MyBatis的Jdbc类型，封装了java自带的类
  * @author Clinton Begin
  */
 public enum JdbcType {

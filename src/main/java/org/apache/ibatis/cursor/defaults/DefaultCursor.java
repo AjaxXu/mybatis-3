@@ -31,6 +31,7 @@ import org.apache.ibatis.session.RowBounds;
 /**
  * This is the default implementation of a MyBatis Cursor.
  * This implementation is not thread safe.
+ * MyBatis游标的默认实现，不是线程安全的
  *
  * @author Guillaume Darmont / guillaume@dropinocean.com
  */
@@ -44,6 +45,7 @@ public class DefaultCursor<T> implements Cursor<T> {
   protected final ObjectWrapperResultHandler<T> objectWrapperResultHandler = new ObjectWrapperResultHandler<>();
 
   private final CursorIterator cursorIterator = new CursorIterator();
+  // 判断iterator是否在使用中
   private boolean iteratorRetrieved;
 
   private CursorStatus status = CursorStatus.CREATED;
@@ -179,6 +181,7 @@ public class DefaultCursor<T> implements Cursor<T> {
     }
   }
 
+  // 游标迭代器
   protected class CursorIterator implements Iterator<T> {
 
     /**

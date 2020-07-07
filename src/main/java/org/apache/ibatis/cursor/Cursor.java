@@ -22,6 +22,7 @@ import java.io.Closeable;
  * Cursors are a perfect fit to handle millions of items queries that would not normally fits in memory.
  * If you use collections in resultMaps then cursor SQL queries must be ordered (resultOrdered="true")
  * using the id columns of the resultMap.
+ * 游标，使用迭代器延迟获取items
  *
  * @author Guillaume Darmont / guillaume@dropinocean.com
  */

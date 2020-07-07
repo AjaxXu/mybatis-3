@@ -26,12 +26,14 @@ import java.util.Set;
 import org.apache.ibatis.reflection.ExceptionUtil;
 
 /**
+ * 插件
  * @author Clinton Begin
  */
 public class Plugin implements InvocationHandler {
 
   private final Object target;
   private final Interceptor interceptor;
+  // 类到方法列表的映射
   private final Map<Class<?>, Set<Method>> signatureMap;
 
   private Plugin(Object target, Interceptor interceptor, Map<Class<?>, Set<Method>> signatureMap) {
@@ -66,6 +68,7 @@ public class Plugin implements InvocationHandler {
     }
   }
 
+  // 获取注解中，类到方法的映射
   private static Map<Class<?>, Set<Method>> getSignatureMap(Interceptor interceptor) {
     Intercepts interceptsAnnotation = interceptor.getClass().getAnnotation(Intercepts.class);
     // issue #251
@@ -86,6 +89,7 @@ public class Plugin implements InvocationHandler {
     return signatureMap;
   }
 
+  // 获取所有在map中的接口
   private static Class<?>[] getAllInterfaces(Class<?> type, Map<Class<?>, Set<Method>> signatureMap) {
     Set<Class<?>> interfaces = new HashSet<>();
     while (type != null) {

@@ -23,6 +23,7 @@ import java.util.StringJoiner;
 import org.apache.ibatis.reflection.ArrayUtil;
 
 /**
+ * 缓存key对象
  * @author Clinton Begin
  */
 public class CacheKey implements Cloneable, Serializable {
@@ -48,6 +49,7 @@ public class CacheKey implements Cloneable, Serializable {
   private final int multiplier;
   private int hashcode;
   private long checksum;
+  // 对象数量
   private int count;
   // 8/21/2017 - Sonarlint flags this as needing to be marked transient. While true if content is not serializable, this
   // is not always true and thus should not be marked transient.

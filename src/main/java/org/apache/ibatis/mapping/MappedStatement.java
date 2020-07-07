@@ -46,6 +46,7 @@ public final class MappedStatement {
   private List<ResultMap> resultMaps;
   private boolean flushCacheRequired;
   private boolean useCache;
+  // 结果是否排序
   private boolean resultOrdered;
   private SqlCommandType sqlCommandType;
   private KeyGenerator keyGenerator;

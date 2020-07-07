@@ -63,6 +63,7 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
 /**
+ * 默认的结果集处理器
  * @author Clinton Begin
  * @author Eduardo Macarron
  * @author Iwao AVE!
@@ -79,6 +80,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   private final ParameterHandler parameterHandler;
   private final ResultHandler<?> resultHandler;
   private final BoundSql boundSql;
+  // 类型处理器注册表
   private final TypeHandlerRegistry typeHandlerRegistry;
   private final ObjectFactory objectFactory;
   private final ReflectorFactory reflectorFactory;
@@ -318,7 +320,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   //
   // HANDLE ROWS FOR SIMPLE RESULTMAP
   //
-
+  // 简单结果映射处理
   public void handleRowValues(ResultSetWrapper rsw, ResultMap resultMap, ResultHandler<?> resultHandler, RowBounds rowBounds, ResultMapping parentMapping) throws SQLException {
     if (resultMap.hasNestedResultMaps()) {
       ensureNoRowBounds();
@@ -329,6 +331,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     }
   }
 
+  // 如果有内映射，确保没有行限制
   private void ensureNoRowBounds() {
     if (configuration.isSafeRowBoundsEnabled() && rowBounds != null && (rowBounds.getLimit() < RowBounds.NO_ROW_LIMIT || rowBounds.getOffset() > RowBounds.NO_ROW_OFFSET)) {
       throw new ExecutorException("Mapped Statements with nested result mappings cannot be safely constrained by RowBounds. "
@@ -888,7 +891,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
   //
   // HANDLE NESTED RESULT MAPS
   //
-
+  // 处理内映射
   private void handleRowValuesForNestedResultMap(ResultSetWrapper rsw, ResultMap resultMap, ResultHandler<?> resultHandler, RowBounds rowBounds, ResultMapping parentMapping) throws SQLException {
     final DefaultResultContext<Object> resultContext = new DefaultResultContext<>();
     ResultSet resultSet = rsw.getResultSet();

@@ -37,14 +37,18 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.apache.ibatis.type.UnknownTypeHandler;
 
 /**
+ * 结果封装器
  * @author Iwao AVE!
  */
 public class ResultSetWrapper {
 
   private final ResultSet resultSet;
   private final TypeHandlerRegistry typeHandlerRegistry;
+  // 列名
   private final List<String> columnNames = new ArrayList<>();
+  // 列类名
   private final List<String> classNames = new ArrayList<>();
+  // 列类型
   private final List<JdbcType> jdbcTypes = new ArrayList<>();
   private final Map<String, Map<Class<?>, TypeHandler<?>>> typeHandlerMap = new HashMap<>();
   private final Map<String, List<String>> mappedColumnNamesMap = new HashMap<>();

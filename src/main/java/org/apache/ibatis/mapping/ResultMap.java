@@ -32,21 +32,31 @@ import org.apache.ibatis.reflection.ParamNameUtil;
 import org.apache.ibatis.session.Configuration;
 
 /**
+ * 结果映射
+ * <mapper namespace="data.UserMapper">
+ *     <resultMap type="data.User" id="userResultMap">
+ *         <!-- 用id属性来映射主键字段 -->
+ *         <id property="id" column="user_id"/>
+ *         <!-- 用result属性来映射非主键字段 -->
+ *         <result property="userName" column="user_name"/>
+ *     </resultMap>
+ * </mapper>
  * @author Clinton Begin
  */
 public class ResultMap {
   private Configuration configuration;
 
   private String id;
-  private Class<?> type;
+  private Class<?> type; // 实体类
   private List<ResultMapping> resultMappings;
   private List<ResultMapping> idResultMappings;
+  // 构造函数参数
   private List<ResultMapping> constructorResultMappings;
   private List<ResultMapping> propertyResultMappings;
   private Set<String> mappedColumns;
   private Set<String> mappedProperties;
   private Discriminator discriminator;
-  private boolean hasNestedResultMaps;
+  private boolean hasNestedResultMaps; // 是否有内映射
   private boolean hasNestedQueries;
   private Boolean autoMapping;
 
@@ -145,6 +155,7 @@ public class ResultMap {
       return resultMap;
     }
 
+    // 获取构造函数参数名
     private List<String> argNamesOfMatchingConstructor(List<String> constructorArgNames) {
       Constructor<?>[] constructors = resultMap.type.getDeclaredConstructors();
       for (Constructor<?> constructor : constructors) {

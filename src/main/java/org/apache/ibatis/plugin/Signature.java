@@ -22,6 +22,7 @@ import java.lang.annotation.Target;
 
 /**
  * The annotation that indicate the method signature.
+ * 指定方法签名的注解
  *
  * @see Intercepts
  * @author Clinton Begin

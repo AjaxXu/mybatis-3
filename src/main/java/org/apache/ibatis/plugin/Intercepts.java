@@ -23,6 +23,7 @@ import java.lang.annotation.Target;
 
 /**
  * The annotation that specify target methods to intercept.
+ * 指明目标方法用于拦截
  *
  * <b>How to use:</b>
  * <pre>

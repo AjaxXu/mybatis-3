@@ -24,6 +24,7 @@ public class ArrayUtil {
 
   /**
    * Returns a hash code for {@code obj}.
+   * 返回对象的hashcode
    *
    * @param obj
    *          The object to get a hash code for. May be an array or <code>null</code>.

@@ -140,6 +140,7 @@ public class Configuration {
   // 对象包装工厂
   protected ObjectWrapperFactory objectWrapperFactory = new DefaultObjectWrapperFactory();
 
+  // 是否延迟加载
   protected boolean lazyLoadingEnabled = false;
   protected ProxyFactory proxyFactory = new JavassistProxyFactory(); // #224 Using internal Javassist instead of OGNL
 

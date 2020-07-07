@@ -26,6 +26,7 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
 /**
+ * 结果参数
  * @author Clinton Begin
  */
 public class ResultMapping {
@@ -38,12 +39,12 @@ public class ResultMapping {
   private TypeHandler<?> typeHandler;
   private String nestedResultMapId;
   private String nestedQueryId;
-  private Set<String> notNullColumns;
+  private Set<String> notNullColumns; // 非空列集合
   private String columnPrefix;
   private List<ResultFlag> flags;
-  private List<ResultMapping> composites;
+  private List<ResultMapping> composites; // 组合结果
   private String resultSet;
-  private String foreignColumn;
+  private String foreignColumn; // 外键
   private boolean lazy;
 
   ResultMapping() {
